@@ -1,0 +1,24 @@
+#当前项目 + static-path-pattern + 静态资源名 = 静态资源文件夹下找
+#spring:
+#  mvc:
+#    static-path-pattern: /res/**
+
+
+#更改存放静态资源的路径目录（可以配多个）
+#resources:
+#  static-locations: [classpath:/haha/]
+
+
+#开启PUT,DELETE请求,开启页面表单的Rest功能
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+    contentnegotiation:
+      favor-parameter: true
+
+#以后所有请求都以 /world 开始
+server:
+  servlet:
+    context-path: /world

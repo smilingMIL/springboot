@@ -1,0 +1,108 @@
+#修改配置项-数据库连接池的配置
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/book
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+    druid:
+      aop-patterns: com.boot.*  #监控SpringBean
+      filters: stat,wall  # 底层开启功能，stat（sql监控），wall（防火墙）
+
+      stat-view-servlet:  # 配置监控页功能
+        enabled: true
+        login-username: admin
+        login-password: 123
+        reset-enable: false
+
+      web-stat-filter:   # 监控web
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+
+
+      filter:
+        stat:   # 对上面filters里面的stat的详细配置
+          slow-sql-millis: 3000
+          log-slow-sql: true
+          enabled: true
+        wall:
+          enabled: true
+          config:
+            drop-table-allow: false #不允许删表
+
+
+# Redis
+  redis:
+    host: r-7xvk4tv3gdr83i87vupd.redis.rds.aliyuncs.com
+    port: 6379
+    password: lfy:Czj18826292754
+    client-type: jedis
+    jedis:
+      pool:
+        max-active: 10
+#    lettuce:
+#      pool:
+#        max-active: 10
+#        min-idle: 5
+
+
+  #    url: redis://lfy:Czj18826292754@r-7xvk4tv3gdr83i87vupd.redis.rds.aliyuncs.com:6379
+
+
+
+
+  jdbc:
+    template:
+      query-timeout: 3
+
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:8888  #服务器的地址
+
+
+
+# 配置mybatis规则（可以不写全局；配置文件，所有全局配置文件的配置都放在configuration配置项中即可）
+mybatis:
+  ##如果在yml配置了相关配置项，就不能用全局配置文件位置，因为它不知道听谁的）
+# config-location: classpath:mybatis/mybatis-config.xml   #全局配置文件位置（
+  mapper-locations: classpath:/mapper/*.xml        #sql映射文件位置
+
+  configuration:    #指定mybatis全局配置文件中的相关配置项
+    map-underscore-to-camel-case: true    #开启驼峰命名
+
+
+
+# management  是所有actuator的配置
+# management.endpoint.端点.xxx：对某个端点的具体配置
+management:
+  endpoints:
+    enabled-by-default: true #默认开启所有监控端点true
+    web:
+      exposure:
+        include: '*'  #以web方式暴露所有端点
+
+  endpoint:
+    health: #配置health的详细信息
+      show-details: always
+      enabled: true #如果关闭全部监控端点，可以使用指定开发哪些端点
+
+    info:
+      enabled: true
+
+    beans:
+      enabled: true
+
+    metrics:
+      enabled: true
+
+info: #定制info信息（随便写）
+  appName: boot-admin
+  appVersion: 1.0.0
+  mavenProjectName: @project.artifactId@
+  mavenProjectVersion: @project.version@
+
+

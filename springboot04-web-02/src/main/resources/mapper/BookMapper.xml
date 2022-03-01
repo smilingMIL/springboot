@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+            <!--mybatis 配置文件 模式-->
+<mapper namespace="com.boot.mapper.BookMapper">
+
+    <!--public book getBook(Long id);-->
+    <select id="getBook" resultType="com.boot.bean.Book">
+            select * from t_user where id=#{id}
+    </select>
+
+
+</mapper>

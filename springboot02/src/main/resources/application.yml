@@ -1,0 +1,25 @@
+person:
+  userName: zhangsan
+  boss: true
+  birth: 2019/12/9
+  age: 18
+#  interests: [篮球,足球]
+  interests:
+    - 篮球
+    - 足球
+  animal: [狗,猫]
+  score: {english:80,math:90}
+  salarys: [9999,12324]
+  pet:
+    name: 阿狗
+    weight: 99
+  allPets:
+    sick:
+      - {name: 阿狗,weight: 99.99}
+      - name: 阿里
+        weight: 88
+      - name: 阿虎
+        weight: 66
+    health:
+      - {name: 阿胡,weight: 33}
+      - {name: 阿水,weight: 44}
